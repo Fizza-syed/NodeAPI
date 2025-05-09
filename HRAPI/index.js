@@ -24,6 +24,15 @@ app.get('/country',async(req,res)=>{
     }
 });
 
+app.get('/emp',async(req,res)=>{
+    try{
+    const result = await pool.query('select * from employees');
+    res.json(result.rows);
+    }catch(err){
+      res.status(500).json({Error:err.message});
+    }
+});
+
 app.get('/region',async(req,res)=>{
     try{
     const result = await pool.query('select * from regions');
